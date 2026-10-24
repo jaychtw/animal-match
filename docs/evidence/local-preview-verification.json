@@ -1,0 +1,34 @@
+{
+  "commit": "0a58d7713633a7634eaa6bf32bb5ba5688fe783d",
+  "url": "http://127.0.0.1:4173/animal-match/",
+  "reports": [
+    {
+      "viewport": "1440×1100 desktop",
+      "httpStatus": 200,
+      "entry": "/animal-match/assets/index-HIlmWt2F.js",
+      "scriptSha256": "bfc370b34cc39250cd43a5f7ddb8299b87bb60d6272e0429c358cd48150ecc22",
+      "gameplayTurns": 3,
+      "journeyFreePlayNavigation": "exact separate sessions passed",
+      "menuLevels": 15,
+      "audioPreferencesReload": "passed",
+      "engineDOMEquality": "passed",
+      "saveReloadAndDeterministicContinuation": "passed",
+      "languageReload": "zh-TW passed",
+      "pageErrors": 0
+    },
+    {
+      "viewport": "390×844 touch-emulated",
+      "httpStatus": 200,
+      "entry": "/animal-match/assets/index-HIlmWt2F.js",
+      "scriptSha256": "bfc370b34cc39250cd43a5f7ddb8299b87bb60d6272e0429c358cd48150ecc22",
+      "gameplayTurns": 3,
+      "journeyFreePlayNavigation": "exact separate sessions passed",
+      "menuLevels": 15,
+      "audioPreferencesReload": "passed",
+      "engineDOMEquality": "passed",
+      "saveReloadAndDeterministicContinuation": "passed",
+      "languageReload": "zh-TW passed",
+      "pageErrors": 0
+    }
+  ]
+}

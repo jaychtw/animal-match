@@ -15,6 +15,7 @@ Toolchain: Node 24.19.0, npm 11.9.0, TypeScript 5.9.3, Vite 7.3.7, Playwright 1.
 | `npm run validate:levels` | 15 winning and 15 losing deterministic engine witnesses; no failed levels |
 | `npm run test:browser -- --workers=3` | 57 passed, 0 failed, 0 skipped on final refined build (2.0 minutes); summary in evidence/verification.json |
 | `(cd vendor && sha256sum -c SHA256SUMS)` | Pass; immutable engine artifact unchanged |
+| Local deployment verifier | Pass against local production preview: desktop and touch-emulated mobile, zero page errors; not public-site verification |
 | Firefox/WebKit install | Blocked: browser CDN returns HTTP 403 Domain forbidden; compatibility tests unrun locally |
 
 Unit/integration coverage includes all ten unordered special combinations, all four special creations/activations, exact event projection, RNG restore and deterministic continuation, input locking, transactional typed engine failures, corrupt/blocked/quota-limited storage, 15 level win/loss replays, progression/best scores, Free Play checkpointing and bilingual parity. Five added artwork tests verify animal identity and separate contrasting markers across all characters.

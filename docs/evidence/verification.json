@@ -24,5 +24,7 @@
   "hostedCI": "unverified",
   "pagesDeployment": "unverified",
   "publicGameplay": "unverified",
-  "creativeAcceptance": "pending"
+  "creativeAcceptance": "pending",
+  "applicationCommit": "0a58d7713633a7634eaa6bf32bb5ba5688fe783d",
+  "localDeploymentVerifier": "passed: desktop and touch-emulated mobile, local preview only"
 }
