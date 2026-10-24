@@ -1,0 +1,31 @@
+import {test,expect} from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+for(const width of [320,390,768,1440])for(const theme of ['cute','classic'])for(const lang of ['en','zh-TW'])test(`${theme} ${lang} at ${width}: artwork, active-session theme changes, persistence, accessibility`,async({page})=>{
+ await page.setViewportSize({width,height:1000});await page.emulateMedia({reducedMotion:'reduce'});await page.goto('./');
+ await expect(page.locator('html')).toHaveAttribute('data-theme','cute');
+ if(lang==='zh-TW')await page.locator('#language').click();
+ const session=await page.evaluate(()=>localStorage.getItem('animal-match-session-v1'));
+ await page.locator('#settings').click();await page.locator('#theme').selectOption(theme);await expect(page.locator('html')).toHaveAttribute('data-theme',theme);
+ expect(await page.evaluate(()=>localStorage.getItem('animal-match-session-v1'))).toBe(session);
+ await page.keyboard.press('Escape');
+ await expect(page.locator('.cell svg[data-animal]')).toHaveCount(64);
+ expect(await page.locator('.shape-gallery svg').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('data-animal')))).toEqual(['rabbit','mouse','hamster','squirrel','dolphin','frog']);
+ await expect(page.locator('.special-gallery svg circle[r="16"]')).toHaveCount(4);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);
+ const overlaps=await page.locator('.controls').evaluate(el=>{const nodes=[...el.children].filter(n=>n.getBoundingClientRect().height>0&&getComputedStyle(n).display!=='none');return nodes.flatMap((n,i)=>nodes.slice(i+1).filter(m=>{const a=n.getBoundingClientRect(),b=m.getBoundingClientRect();return Math.min(a.right,b.right)-Math.max(a.left,b.left)>2&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>2;}).map(m=>[n.className,m.className]));});expect(overlaps).toEqual([]);
+ await page.screenshot({path:`docs/evidence/${theme}-${lang}-${width}.png`,fullPage:true});
+ await page.reload();await expect(page.locator('html')).toHaveAttribute('data-theme',theme);await expect(page.locator('html')).toHaveAttribute('lang',lang);
+ expect(await page.evaluate(()=>localStorage.getItem('animal-match-session-v1'))).toBe(session);
+});
+test('theme switching after a real turn preserves exact board, selection and future continuation',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});await page.goto('./');
+ const {loadGame}=await import('@jaychtw/match3-core');
+ const original=JSON.parse((await page.evaluate(()=>localStorage.getItem('animal-match-session-v1')))!);const game=loadGame(original.state);const move=game.listLegalMoves()[0];game.applyMove(move);
+ await page.locator(`[data-cell="${move.from.row*8+move.from.col}"]`).click();await page.locator(`[data-cell="${move.to.row*8+move.to.col}"]`).click();await expect(page.locator('.board')).toHaveAttribute('data-reconciled','true');
+ const saved=await page.evaluate(()=>localStorage.getItem('animal-match-session-v1'));expect(JSON.parse(JSON.parse(saved!).state)).toEqual(game.state);
+ await page.locator('#settings').click();await page.locator('#theme').selectOption('classic');await page.keyboard.press('Escape');await page.reload();
+ expect(await page.evaluate(()=>localStorage.getItem('animal-match-session-v1'))).toBe(saved);
+ const next=game.listLegalMoves()[0];game.applyMove(next);await page.locator(`[data-cell="${next.from.row*8+next.from.col}"]`).click();await page.locator(`[data-cell="${next.to.row*8+next.to.col}"]`).click();await expect(page.locator('.board')).toHaveAttribute('data-moves','2');await expect(page.locator('.board')).toHaveAttribute('data-reconciled','true');
+ expect(JSON.parse(JSON.parse((await page.evaluate(()=>localStorage.getItem('animal-match-session-v1')))!).state)).toEqual(game.state);
+});

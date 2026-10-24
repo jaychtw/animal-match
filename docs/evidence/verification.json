@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-24",
+  "unit": {
+    "passed": 60,
+    "failed": 0,
+    "skipped": 0
+  },
+  "chromium": {
+    "startTime": "2026-10-24T04:34:05.139Z",
+    "duration": 118088.49100000001,
+    "expected": 57,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "levelWitnesses": {
+    "win": 15,
+    "loss": 15
+  },
+  "build": "passed",
+  "typecheck": "passed",
+  "engineChecksum": "passed",
+  "firefoxWebkit": "unrun: browser CDN denied by network policy",
+  "hostedCI": "unverified",
+  "pagesDeployment": "unverified",
+  "publicGameplay": "unverified",
+  "creativeAcceptance": "pending"
+}

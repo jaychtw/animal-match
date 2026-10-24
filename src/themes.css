@@ -1,0 +1,37 @@
+/* Cute: a warm peach-and-lilac playroom. Classic retains the familiar teal board. */
+html[data-theme=cute]{--ink:#4d4159;--muted:#77687b;background:#fbf4f1}
+html[data-theme=cute] body{background:radial-gradient(ellipse at 15% 12%,#f9e4d7 0,transparent 38%),radial-gradient(ellipse at 90% 35%,#ece5f6 0,transparent 42%),#fbf4f1;color:var(--ink)}
+html[data-theme=cute] .header{border-color:#e8dbe1}
+html[data-theme=cute] .intro .eyebrow{color:#88616f}
+html[data-theme=cute] .intro h1{color:#59465f;letter-spacing:-1.8px}
+html[data-theme=cute] .brand{color:#59465f}
+html[data-theme=cute] .game-card{background:#fffcf8;border:2px solid white;border-radius:32px;box-shadow:0 8px 0 #e5d9e0,0 22px 55px #71506b18;padding-top:14px}
+html[data-theme=cute] .board{background:#705e7c;border-color:#897592;border-radius:23px;box-shadow:inset 0 3px 7px #41324d44,0 3px 0 #d7c5d8;gap:5px}
+html[data-theme=cute] .cell{background:#fff5f512;border-radius:11px}
+html[data-theme=cute] .cell:nth-child(2n){background:#fff5f51d}
+html[data-theme=cute] .cell.selected{box-shadow:0 0 0 3px #fff0a9,inset 0 0 15px #fff0a955}
+html[data-theme=cute] .goal-card,html[data-theme=cute] .level-badge{background:#fff8ec;border-color:#ead9c8;box-shadow:0 4px 0 #e9ddcf}
+html[data-theme=cute] .action-button{background:#825b79;border-color:#704e69;box-shadow:0 3px 0 #5f4057}
+html[data-theme=cute] .action-button.secondary{background:#fffaf6;color:#684b65;border-color:#dcc8d5;box-shadow:0 3px 0 #e8dbe4}
+html[data-theme=cute] .direction-pad button{background:#fff9f5;border-color:#ddcad8;box-shadow:0 3px 0 #e5d5df;color:#78516e}
+html[data-theme=cute] .specimen>div{background:#f2e5e6;border:1px solid #e7d7dd;box-shadow:inset 0 2px 0 #fff9,0 4px 0 #e5d7df;border-radius:25px}
+html[data-theme=cute] .special-specimen{background:#eee5f0;border-color:#dfd3e4;border-radius:20px}
+html[data-theme=cute] .progress-track{background:#e9dfeb}
+html[data-theme=cute] .progress-track span{background:#a37798}
+html[data-theme=cute] dialog{background:#fffaf6;color:#51445c;border-color:#eadbe4;border-radius:28px}
+html[data-theme=cute] .collection,html[data-theme=cute] footer{border-color:#e6d9df}
+html[data-theme=cute] .hud span:not(.hud-divider):not(.hud-star),html[data-theme=cute] .eyebrow,html[data-theme=cute] .board-foot{color:#6e5c75}
+.settings-content select{font:inherit;min-height:44px;padding:8px 14px;background:#fffaf6;border:1px solid #9c8398;border-radius:12px;color:#51445c;margin-left:auto}
+.piece{overflow:visible}
+@media(max-width:700px){html[data-theme=cute] .board{gap:3px;border-radius:17px}html[data-theme=cute] .game-card{border-radius:25px}}
+/* Explicit rows keep wrapped bilingual instructions separate from motion controls. */
+@media(min-width:701px) and (max-width:1150px){
+ .controls h2{grid-row:1}.controls #board-help{grid-row:2}.controls .keyboard-help{grid-row:3}
+ .controls .motion-control{grid-row:4}.controls .feedback{grid-row:5}.controls .input-help{grid-row:6}
+ .controls .direction-pad{grid-row:1/5}.controls #restart{grid-row:5}.controls #large{grid-row:6}
+}
+@media(max-width:700px){
+ .controls h2{grid-row:1}.controls #board-help{grid-row:2}.controls .keyboard-help{grid-row:3}
+ .controls .motion-control{grid-column:1;grid-row:4}.controls .feedback{grid-row:5}
+ .controls #restart,.controls #large{grid-row:6}.controls .input-help{grid-row:7}
+}

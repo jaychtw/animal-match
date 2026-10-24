@@ -1,0 +1,36 @@
+name: Validate production candidate
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    container: mcr.microsoft.com/playwright:v1.58.2-noble@sha256:6446946a1d9fd62d9ae501312a2d76a43ee688542b21622056a372959b65d63d
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - run: npm run test:browser -- --workers=3
+      - name: Firefox and WebKit gameplay
+        # Firefox requires its session home to belong to the process user.
+        # Use the image's browser user; only generated report/cache paths change ownership.
+        run: |
+          mkdir -p test-results playwright-compat-report node_modules/.vite-temp
+          chown -R pwuser:pwuser test-results playwright-compat-report node_modules/.vite-temp
+          runuser -u pwuser -- npm run test:compat
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: animal-browser-evidence
+          path: |
+            playwright-report/
+            playwright-compat-report/
+            test-results/
+            docs/evidence/*.png
