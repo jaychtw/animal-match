@@ -20,11 +20,27 @@
   "build": "passed",
   "typecheck": "passed",
   "engineChecksum": "passed",
-  "firefoxWebkit": "unrun: browser CDN denied by network policy",
-  "hostedCI": "unverified",
-  "pagesDeployment": "unverified",
-  "publicGameplay": "unverified",
+  "firefoxWebkit": {
+    "hosted": "compatibility step passed",
+    "local": "2 Firefox browser-launch timeouts; 2 WebKit launches blocked by missing system libraries"
+  },
+  "hostedCI": {
+    "status": "success",
+    "runId": 40063046662,
+    "commit": "69a4a8e3ae09644425c1586d5fd1f8bda6c8e70e"
+  },
+  "pagesDeployment": {
+    "status": "success",
+    "runId": 40063046614
+  },
+  "publicGameplay": {
+    "status": "hosted live-verification step success",
+    "url": "https://jaychtw.github.io/animal-match/",
+    "localBrowser": "blocked by cloud proxy certificate; HTTPS validation preserved",
+    "localHttpStatus": 200
+  },
   "creativeAcceptance": "pending",
   "applicationCommit": "0a58d7713633a7634eaa6bf32bb5ba5688fe783d",
-  "localDeploymentVerifier": "passed: desktop and touch-emulated mobile, local preview only"
+  "localDeploymentVerifier": "passed: desktop and touch-emulated mobile, local preview only",
+  "finalFollowup": "Documentation/evidence only; final main commit workflow results are linked in delivery. App bundle unchanged."
 }

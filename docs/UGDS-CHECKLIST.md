@@ -27,7 +27,7 @@ Pinned standard: `d5c6696efdd6efc028118600466db44aecae0c9b`. This checklist reco
 | Q02 browser | Pass | Actual Chromium campaign, touch, failure/retry, languages and persistence checks |
 | Q03 balance | Not Verified | Fifteen reproducible win/loss witnesses; human balance/enjoyment review pending |
 | Q04 accessibility | Pass | Automated audits, keyboard and label tests; physical screen-reader usability unverified |
-| Q05 release integrity | Not Verified | Local build verified separately; hosted CI/deployment/live public checks pending access |
+| Q05 release integrity | Pass | Separate local checks, successful hosted CI, Pages deployment and actual hosted public desktop/touch gameplay; run links in QA.md, final-head results in delivery |
 | Q06 evidence | Pass | QA.md, reproducible commands, screenshot matrix and explicit gaps |
 | C01 ownership | Pass | GDD preserved; final creative acceptance reserved for director |
 | C02 escalation | Pass | No rules/engine changes or scope cuts; external access blockers disclosed |
